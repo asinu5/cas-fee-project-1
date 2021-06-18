@@ -6,7 +6,7 @@
   <title>Note App</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
     integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
-  <script src="./scripts/controllers/notes-controller.js" type="module"></script>
+  <script src="./scripts/controllers/index-controller.js" type="module"></script>
 
   <link rel="stylesheet" href="styles/index.css">
 </head>
@@ -14,25 +14,51 @@
 <body>
   <header>
     <nav>
-      <div class="nav-container">
-        <button id="create-note">Create New Note</button>
-        <select id="change-style">
-          <option value="color">Color</option>
-          <option value="black-and-white">Black and White</option>
-        </select>
-      </div>
-      <div class="nav-container">
-        <button id="sort-by-finish-date">Sort by Finish Date</button>
-        <button id="sort-by-creation-date">Sort by Creation Date</button>
-        <button id="sort-by-importance-date">Sort by Importance</button>
-        <button id="show-finished-tasks">Show Finished Notes</button>
+      <div id="nav-container">
+        <div class="nav-container">
+          <button id="create-note">Create New Note</button>
+          <select id="change-style">
+            <option value="color">Color</option>
+            <option value="black-and-white">Black and White</option>
+          </select>
+        </div>
+        <div class="nav-container">
+          <button id="sort-by-finish-date">Sort by Finish Date</button>
+          <button id="sort-by-creation-date">Sort by Creation Date</button>
+          <button id="sort-by-importance-date">Sort by Importance</button>
+          <button id="show-finished-tasks">Show Finished Notes</button>
+        </div>
       </div>
     </nav>
   </header>
 
   <main>
     <div id="notes-container">
-      
+
+    </div>
+    <div id="edit-container">
+      <form id="edit-form">
+        <input type="hidden" name="_id" id="_id">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title">
+        </div>
+        <div>
+          <label for="description">Description</label>
+          <textarea name="description" id="description"></textarea>
+        </div>
+        <div>
+          <label for="importance">Importance</label>
+          <input type="text" name="importance" id="importance">
+        </div>
+        <div>
+          <label for="dueDate">Due Date</label>
+          <input type="date" name="dueDate" id="due-date">
+        </div>
+        <div>
+          <button id="save-note">Save</button>
+        </div>
+      </form>
     </div>
   </main>
 

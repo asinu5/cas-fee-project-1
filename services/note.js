@@ -1,11 +1,12 @@
 export default class Note {
-  constructor(_id, title, description, dueDate, finishDate, importance) {
+  constructor(_id, title, description, creationDate, dueDate, finishDate, importance) {
     this._id = _id;
-    this.title = title;
+    this.title = title || 'unknown';
     this.description = description;
+    this.creationDate = creationDate || Date.now();
     this.dueDate = dueDate;
     this.finishDate = finishDate;
-    this.importance = importance;
+    this.importance = importance || 0;
   }
 
   toJSON() {
@@ -13,6 +14,7 @@ export default class Note {
       _id: this._id,
       title: this.title,
       description: this.description,
+      creationDate: this.creationDate,
       dueDate: this.dueDate,
       finishDate: this.finishDate,
       importance: this.importance,
@@ -21,9 +23,5 @@ export default class Note {
 
   static toHumanReadableDate(date) {
     return new Date(date).toDateString();
-  }
-
-  creationDateToHuman() {
-    return new Date(this.creationDate).toDateString();
   }
 }
