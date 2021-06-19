@@ -1,11 +1,11 @@
 export default class Note {
   constructor(_id, title, description, dueDate, finishDate, importance) {
-    this._id = _id;
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.finishDate = finishDate;
-    this.importance = importance;
+    this._id = _id || 0;
+    this.title = title || '';
+    this.description = description || '';
+    this.dueDate = dueDate || '';
+    this.finishDate = finishDate || '';
+    this.importance = importance || '1';
   }
 
   toJSON() {

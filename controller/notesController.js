@@ -9,19 +9,15 @@ export async function getNote(req, res) {
   res.json(await notesStore.get(req.params.id));
 }
 
-export async function saveNote(req, res) {
-  const note = new Note(
-    req.body._id,
-    req.body.title,
-    req.body.description,
-    req.body.creationDate,
-    req.body.dueDate,
-    req.body.finishDate,
-    req.body.importance,
-  );
-  res.json(await notesStore.add(note));
+export async function createNote(req, res) {
+  res.json(await notesStore.create(req.body));
 }
 
+export async function saveNote(req, res) {
+  const id = req.params.id;
+  console.log('ID: ' + id);
+  res.json(await notesStore.save(id, req.body));
+}
 // export async function updateNote(req, res) {
 //   const note = new Note(
 //     req.body._id,

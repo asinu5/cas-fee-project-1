@@ -14,13 +14,12 @@ class IndexController {
     this._id = document.getElementById('_id');
     this.title = document.getElementById('title');
     this.description = document.getElementById('description');
-    this.importance = document.getElementById('impotance');
+    this.importance = document.getElementById('importance');
     this.dueDate = document.getElementById('due-date');
     this.saveNote = document.getElementById('save-note');
   }
 
   async showNotes() {
-    console.log('NOTES');
     const notes = await notesService.getAll();
     this.notesContainer.innerHTML = NotesTemplate.list(notes);
   }
@@ -32,6 +31,7 @@ class IndexController {
     this.title.value = '';
     this.description.value = '';
     this.dueDate.value = '';
+    this.importance.value = '';
   }
 
   initEventHandlers() {
@@ -57,7 +57,7 @@ class IndexController {
       this._id.value = note._id;
       this.title.value = note.title;
       this.description.value = note.description;
-      // this.importance.value = note.importance;
+      this.importance.value = note.importance;
       this.dueDate.value = note.dueDate;
       // this.title.value = note.title;
       // this.title.value = note.title;
@@ -71,7 +71,14 @@ class IndexController {
 
     this.saveNote.addEventListener('click', async (event) => {
       event.preventDefault();
-      const note = new Note(undefined, this.title.value || '');
+      // console.log('_id: ' + this._id.value);
+      // console.log('title: ' + this.title.value);
+      // console.log('description: ' + this.description.value);
+      // console.log('dueDate: ' + this.dueDate.value);
+      // console.log('importance: ' + this.importance.value);
+      const note = new Note(this._id.value || 0, this.title.value, this.description.value, this.dueDate.value, null, this.importance.value);
+      console.log('SAVE Note');
+      console.log(note);
       await notesService.saveItem(note);
     });
   }

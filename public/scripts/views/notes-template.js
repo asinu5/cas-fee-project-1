@@ -4,8 +4,9 @@ export default class NotesTemplate {
   static list(notes) {
     return notes.reduce((template, note) => `${template}<div class="notes">
     <span>${note.title} (${note._id})</span><br>
-    <span>${note.creationDateToHuman()}</span>
-    <button id="${note._id}">Edit</button>
+    <span>${note.description}</span><br>
+    <span>${note.dueDate}</span>
+    <button id="${note._id}">Edit</button><br><br>
   </div>`, '');
   }
 

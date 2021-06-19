@@ -6,11 +6,15 @@ export class NotesStore {
     this.db = db || new Datastore({ filename: './data/notes.db', autoload: true });
   }
 
-  async add(note) {
-    note._id = undefined;
+  async create(note) {
     return this.db.insert(note);
   }
 
+  async save(id, note) {
+    console.log(id);
+    console.log(note);
+    return this.db.update({ _id: id }, { $set: note });
+  }
   //   async delete(id) {
   //     await this.db.update({ _id: id }, { $set: { state: 'DELETED' } });
   //     return await this.get(id);
