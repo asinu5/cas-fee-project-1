@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Note App</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
     integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
@@ -15,14 +16,14 @@
   <header>
     <nav>
       <div id="nav-container">
-        <div class="nav-container">
+        <div class="nav-row">
           <button id="create-note">Create New Note</button>
           <select id="change-style">
             <option value="color">Color</option>
             <option value="black-and-white">Black and White</option>
           </select>
         </div>
-        <div class="nav-container">
+        <div class="nav-row">
           <button id="sort-by-finish-date">Sort by Finish Date</button>
           <button id="sort-by-creation-date">Sort by Creation Date</button>
           <button id="sort-by-importance-date">Sort by Importance</button>

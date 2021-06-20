@@ -52,13 +52,19 @@ class IndexController {
     });
 
     this.notesContainer.addEventListener('click', async (event) => {
-      const note = await notesService.getItem(event.target.id);
-      console.log(note);
-      this._id.value = note._id;
-      this.title.value = note.title;
-      this.description.value = note.description;
-      this.importance.value = note.importance;
-      this.dueDate.value = note.dueDate;
+      const noteId = event.target.id;
+      if (event.target.type === 'submit') {
+        const note = await notesService.getItem(noteId);
+        this._id.value = note._id;
+        this.title.value = note.title;
+        this.description.value = note.description;
+        this.importance.value = note.importance;
+        this.dueDate.value = note.dueDate;
+      } else if (event.target.type === 'checkbox') {
+        console.log('finishDate');
+        await notesService.updateFinishDate(noteId);
+        this.showNotes();
+      }
       // this.title.value = note.title;
       // this.title.value = note.title;
       // document.getElementById('save-note').addEventListener('click', (event) => {

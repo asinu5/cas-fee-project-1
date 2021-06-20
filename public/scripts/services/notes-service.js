@@ -64,6 +64,19 @@ class NotesService {
       .then((data) => { const note = new Note(data._id, data.title, data.description, data.dueDate, data.finishDate, data.importance); console.log(note); return note; });
   }
 
+  async updateFinishDate(id) {
+    const note = { finishDate: Date.now() };
+    return await fetch(`/notes/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(note),
+    })
+      .then((response) => response.json())
+      .then((data) => { const note = new Note(data._id, data.title, data.description, data.dueDate, data.finishDate, data.importance); console.log(note); return note; });
+  }
+
   save() {
     this.notesData.update(this.notes.map((note) => note.toJSON()));
   }

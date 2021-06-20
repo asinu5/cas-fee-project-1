@@ -8,16 +8,16 @@ export default class Note {
     this.importance = importance || '1';
   }
 
-  toJSON() {
-    return {
-      _id: this._id,
-      title: this.title,
-      description: this.description,
-      dueDate: this.dueDate,
-      finishDate: this.finishDate,
-      importance: this.importance,
-    };
-  }
+  // toJSON() {
+  //   return {
+  //     _id: this._id,
+  //     title: this.title,
+  //     description: this.description,
+  //     dueDate: this.dueDate,
+  //     finishDate: this.finishDate,
+  //     importance: this.importance,
+  //   };
+  // }
 
   static toHumanReadableDate(date) {
     return new Date(date).toDateString();
@@ -25,5 +25,27 @@ export default class Note {
 
   creationDateToHuman() {
     return new Date(this.creationDate).toDateString();
+  }
+
+  dueDateDisplay() {
+    let dueDate;
+    if (this.dueDate === '') {
+      dueDate = 'Sometimes in the future';
+    } else {
+      dueDate = this.dueDate;
+    }
+
+    return dueDate;
+  }
+
+  finishDateChecked() {
+    let checked;
+    if (this.finishDate === '') {
+      checked = '';
+    } else {
+      checked = ' checked';
+    }
+
+    return checked;
   }
 }
