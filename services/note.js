@@ -1,9 +1,11 @@
+import DateTime from 'luxon';
+
 export default class Note {
   constructor(_id, title, description, creationDate, dueDate, finishDate, importance) {
     this._id = _id || '';
     this.title = title || '';
     this.description = description || '';
-    this.creationDate = creationDate || Date.now();
+    this.creationDate =  DateTime.now().toISODate();
     this.dueDate = dueDate || '';
     this.finishDate = finishDate || '';
     this.importance = importance || '1';

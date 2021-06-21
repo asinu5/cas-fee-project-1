@@ -1,5 +1,6 @@
 import NotesData from './data/notes-data.js';
 import Note from './note.js';
+import { DateTime } from "./luxon.js";
 import httpService from './data/http-service.js';
 
 class NotesService {
@@ -64,8 +65,8 @@ class NotesService {
       .then((data) => { const note = new Note(data._id, data.title, data.description, data.dueDate, data.finishDate, data.importance); console.log(note); return note; });
   }
 
-  async updateFinishDate(id) {
-    const note = { finishDate: Date.now() };
+  async changeFinishDate(id, checked) {
+    const note = { finishDate: checked ? DateTime.now().toISODate() : '' };
     return await fetch(`/notes/${id}`, {
       method: 'PATCH',
       headers: {

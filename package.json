@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "luxon": "^1.27.0",
     "method-override": "^3.0.0",
     "nedb": "^1.8.0",
     "nedb-promise": "^2.0.1"

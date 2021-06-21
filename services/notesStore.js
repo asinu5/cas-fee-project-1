@@ -1,4 +1,6 @@
 import Datastore from 'nedb-promise';
+import DateTime from 'luxon';
+
 // import Note from './note.js';
 
 export class NotesStore {
@@ -7,6 +9,7 @@ export class NotesStore {
   }
 
   async create(note) {
+    Object.defineProperty(note, 'creationDate', { value: Date.now() });
     return this.db.insert(note);
   }
 

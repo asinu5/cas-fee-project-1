@@ -1,1 +1,6 @@
-{"title":"Bär","description":"Bären fressen gerne Lachse.","dueDate":"2021-06-17","finishDate":1624197881149,"importance":"1","_id":"LNZC1ADZC3pzsGgB"}
+{"title":"Bär","description":"Bären fressen gerne Lachse.","dueDate":"2021-06-17","finishDate":"2021-06-21","importance":"1","_id":"LNZC1ADZC3pzsGgB"}
+{"title":"Luchs","description":"Luchse sind scheue Tiere.","dueDate":"2021-06-24","finishDate":"2021-06-21","importance":"3","_id":"R9T1hWqEJMhrCzgN"}
+{"title":"Gnu","description":"","dueDate":"","finishDate":"","importance":"1","_id":"fhHMquHDb3rVX2sc"}
+{"title":"Tiger","description":"","dueDate":"","finishDate":"","importance":"1","_id":"hHTquUjRba2ugQRz"}
+{"title":"Maus","description":"Mäuse essen Käse.","dueDate":"2021-06-30","finishDate":"2021-06-17","importance":"1","_id":"laimhrbSiJSeU67w"}
+{"title":"Esel","description":"","dueDate":"","finishDate":"","importance":"2","_id":"oN9hIdKsIgciv0Y4"}

@@ -27,6 +27,7 @@ class IndexController {
   showEditForm() {
     // this.editContainer.innerHTML = NotesTemplate.item();
     // this.navContainer.style.display = 'none';
+
     this._id.value = '';
     this.title.value = '';
     this.description.value = '';
@@ -61,8 +62,12 @@ class IndexController {
         this.importance.value = note.importance;
         this.dueDate.value = note.dueDate;
       } else if (event.target.type === 'checkbox') {
+        console.log('inside checkbox');
+        console.log(`CHECKED: ${event.target.checked}`);
         console.log('finishDate');
-        await notesService.updateFinishDate(noteId);
+        await notesService.changeFinishDate(noteId, event.target.checked);
+        
+        // this.navContainer.style.display = 'initial';
         this.showNotes();
       }
       // this.title.value = note.title;

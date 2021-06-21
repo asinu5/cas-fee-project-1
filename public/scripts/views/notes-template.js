@@ -3,8 +3,8 @@ import Note from '../services/note.js';
 export default class NotesTemplate {
   static list(notes) {
     return notes.reduce((template, note) => `${template}<div class="notes">
-    <div>${note.dueDateDisplay()} ${note.title} (${note._id})</div>
-    <div><input type="checkbox" id="${note._id}" ${note.finishDateChecked()}>${note.finishDate} ${note.description}</div>
+    <div>${note.dueDateDisplay()} ${note.title} (${note._id}) ${note.importanceDisplay()}</div>
+    <div><input type="checkbox" id="${note._id}" ${note.finishDateChecked()}>Finished ${note.finishDateDisplay()} ${note.description}</div>
     <div><button id="${note._id}">Edit</button></div>
   </div>`, '');
   }

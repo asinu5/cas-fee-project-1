@@ -1,3 +1,5 @@
+import { DateTime } from './luxon.js';
+
 export default class Note {
   constructor(_id, title, description, dueDate, finishDate, importance) {
     this._id = _id || 0;
@@ -6,6 +8,7 @@ export default class Note {
     this.dueDate = dueDate || '';
     this.finishDate = finishDate || '';
     this.importance = importance || '1';
+    // this.actualDate = DateTime.now().setZone("Europe/Zurich");
   }
 
   // toJSON() {
@@ -38,6 +41,27 @@ export default class Note {
     return dueDate;
   }
 
+  finishDateDisplay() {
+    let finishDate;
+    if (this.finishDate === '') {
+      finishDate = '';
+    } else {
+      const daysDiff = Math.floor(DateTime.fromISO(this.finishDate).diffNow('days').days * -1);
+      switch (daysDiff) {
+        case 0:
+          finishDate = 'today';
+          break;
+        case 1:
+          finishDate = 'yesterday';
+          break;
+        default:
+          finishDate = `${daysDiff} days ago`;
+      }
+    }
+
+    return finishDate;
+  }
+
   finishDateChecked() {
     let checked;
     if (this.finishDate === '') {
@@ -47,5 +71,11 @@ export default class Note {
     }
 
     return checked;
+  }
+
+  importanceDisplay() {
+    const maxImportance = 5;
+
+    return '&#9734; '.repeat(maxImportance - this.importance) + '&#9733; '.repeat(this.importance);
   }
 }
