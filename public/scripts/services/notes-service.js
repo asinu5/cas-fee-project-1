@@ -19,9 +19,9 @@ class NotesService {
     }
   }
 
-  async getAll() {
+  async getAll(filter = '', sortBy = '', order = '1') {
     console.log('GET all');
-    return await fetch('/notes/')
+    return await fetch(`/notes?filter=${filter}&sort=${sortBy}&order=${order}`)
       .then((response) => response.json())
       .then((data) => { const notes = data.map((x) => new Note(x._id, x.title, x.description, x.dueDate, x.finishDate, x.importance)); console.log(notes); return notes; });
 

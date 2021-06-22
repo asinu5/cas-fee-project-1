@@ -2,7 +2,8 @@ import { notesStore } from '../services/notesStore.js';
 import Note from '../services/note.js';
 
 export async function getNotesList(req, res) {
-  res.json(await notesStore.all());
+  console.log('FILTER: ' + req.query.filter);
+  res.json(await notesStore.all(req.query.filter, req.query.sort, req.query.order));
 }
 
 export async function getNote(req, res) {

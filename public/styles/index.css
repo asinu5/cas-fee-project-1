@@ -4,10 +4,41 @@ body {
     font-family: sans-serif;
 }
 
-.nav-row {
+.nav-row,
+.note-row {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.notes {
+    padding: 5px 0;
+}
+
+.notes:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.note-25 {
+    width: 25%;
+}
+
+.note-50 {
+    width: 50%;
+}
+
+.note-75 {
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.note-65 {
+    width: 70%;
+}
+
+.note-10 {
+    width: 5%;
 }
 
 .nav-row>button,
@@ -29,10 +60,23 @@ button {
     transition-duration: 0.2s;
 }
 
+.black-and-white {
+    color: white;
+    background-color: grey;
+}
+
 button:hover {
     background-color: green;
 }
 
 select {
-	margin: 2px;
+    margin: 2px;
 }
+
+.note-edit {
+    display: flex;
+    justify-content:left;
+    flex-wrap: wrap;
+}
+
+

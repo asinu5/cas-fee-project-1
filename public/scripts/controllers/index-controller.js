@@ -8,6 +8,8 @@ class IndexController {
     this.changeStyle = document.getElementById('change-style');
     this.sortByFinishDate = document.getElementById('sort-by-finish-date');
     this.sortByCreationDate = document.getElementById('sort-by-creation-date');
+    this.sortByImportance = document.getElementById('sort-by-importance');
+    this.showFinishedTasks = document.getElementById('show-finished-tasks');
     this.notesContainer = document.getElementById('notes-container');
     this.editContainer = document.getElementById('edit-container');
     this.navContainer = document.getElementById('nav-container');
@@ -17,10 +19,14 @@ class IndexController {
     this.importance = document.getElementById('importance');
     this.dueDate = document.getElementById('due-date');
     this.saveNote = document.getElementById('save-note');
+    this.styling = document.getElementById('styling');
+    this.importanceOrder = -1;
+    this.finishDateOrder = -1;
+    this.creationDateOrder = -1;
   }
 
-  async showNotes() {
-    const notes = await notesService.getAll();
+  async showNotes(filter, sort = 'dueDate', order = -1) {
+    const notes = await notesService.getAll(filter, sort, order);
     this.notesContainer.innerHTML = NotesTemplate.list(notes);
   }
 
@@ -40,16 +46,32 @@ class IndexController {
       this.showEditForm();
     });
 
-    this.changeStyle.addEventListener('click', (event) => {
-
+    this.changeStyle.addEventListener('change', (event) => {
+      if (event.target.value === 'color') {
+        this.styling.classList.remove('black-and-white');
+      } else {
+        this.styling.classList.add('black-and-white');
+      }
     });
 
     this.sortByFinishDate.addEventListener('click', (event) => {
-      alert('No Notes');
+      this.showNotes('', 'finishDate', this.finishDateOrder);
+      this.finishDateOrder *= -1;
+    });
+
+    this.sortByImportance.addEventListener('click', (event) => {
+      this.showNotes('', 'importance', this.importanceOrder);
+      this.importanceOrder *= -1;
     });
 
     this.sortByCreationDate.addEventListener('click', (event) => {
+      this.showNotes('', 'creationDate', this.creationDateOrder);
+      this.creationDateOrder *= -1;
+    });
 
+    this.showFinishedTasks.addEventListener('click', (event) => {
+      this.showNotes('finished', 'finishDate', this.finishDateOrder);
+      this.finishDateOrder *= -1;
     });
 
     this.notesContainer.addEventListener('click', async (event) => {
@@ -66,7 +88,7 @@ class IndexController {
         console.log(`CHECKED: ${event.target.checked}`);
         console.log('finishDate');
         await notesService.changeFinishDate(noteId, event.target.checked);
-        
+
         // this.navContainer.style.display = 'initial';
         this.showNotes();
       }
@@ -96,6 +118,7 @@ class IndexController {
 
   initialize() {
     this.initEventHandlers();
+    this.changeStyle.value = 'color';
     // notesService.loadData();
     this.showNotes();
   }

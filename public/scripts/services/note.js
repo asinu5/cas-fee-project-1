@@ -34,8 +34,28 @@ export default class Note {
     let dueDate;
     if (this.dueDate === '') {
       dueDate = 'Sometimes in the future';
+    } else if (DateTime.fromISO(this.dueDate).isValid === true) {
+      const daysDiff = Math.ceil(DateTime.fromISO(this.dueDate).diffNow('days').days);
+      switch (daysDiff) {
+        case 0:
+          dueDate = 'today';
+          break;
+        case 1:
+          dueDate = 'tomorrow';
+          break;
+        case -1:
+          dueDate = 'yesterday';
+          break;
+        default:
+          if (daysDiff > 0) {
+            dueDate = `In ${daysDiff} days`;
+          } else {
+            dueDate = `${Math.abs(daysDiff)} days ago`;
+          }
+      }
+      dueDate = `${dueDate}`;
     } else {
-      dueDate = this.dueDate;
+      dueDate = 'date is not valid';
     }
 
     return dueDate;
@@ -45,8 +65,8 @@ export default class Note {
     let finishDate;
     if (this.finishDate === '') {
       finishDate = '';
-    } else {
-      const daysDiff = Math.floor(DateTime.fromISO(this.finishDate).diffNow('days').days * -1);
+    } else if (DateTime.fromISO(this.dueDate).isValid === true) {
+      const daysDiff = Math.abs(Math.ceil(DateTime.fromISO(this.finishDate).diffNow('days').days));
       switch (daysDiff) {
         case 0:
           finishDate = 'today';
@@ -57,6 +77,8 @@ export default class Note {
         default:
           finishDate = `${daysDiff} days ago`;
       }
+    } else {
+      finishDate = 'date is not valid';
     }
 
     return finishDate;
@@ -76,6 +98,6 @@ export default class Note {
   importanceDisplay() {
     const maxImportance = 5;
 
-    return '&#9734; '.repeat(maxImportance - this.importance) + '&#9733; '.repeat(this.importance);
+    return '&#9734;'.repeat(maxImportance - this.importance) + '&#9733;'.repeat(this.importance);
   }
 }

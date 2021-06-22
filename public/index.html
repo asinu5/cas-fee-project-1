@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="styles/index.css">
 </head>
 
-<body>
+<body id="styling">
   <header>
     <nav>
       <div id="nav-container">
@@ -26,7 +26,7 @@
         <div class="nav-row">
           <button id="sort-by-finish-date">Sort by Finish Date</button>
           <button id="sort-by-creation-date">Sort by Creation Date</button>
-          <button id="sort-by-importance-date">Sort by Importance</button>
+          <button id="sort-by-importance">Sort by Importance</button>
           <button id="show-finished-tasks">Show Finished Notes</button>
         </div>
       </div>
@@ -41,23 +41,31 @@
       <form id="edit-form">
         <input type="hidden" name="_id" id="_id">
         <div>
-          <label for="title">Title</label>
-          <input type="text" name="title" id="title">
-        </div>
-        <div>
-          <label for="description">Description</label>
-          <textarea name="description" id="description"></textarea>
-        </div>
-        <div>
-          <label for="importance">Importance</label>
-          <input type="text" name="importance" id="importance">
-        </div>
-        <div>
-          <label for="dueDate">Due Date</label>
-          <input type="date" name="dueDate" id="due-date">
-        </div>
-        <div>
-          <button id="save-note">Save</button>
+          <div class="note-edit">
+            <label for="title" class="note-25">Title</label>
+            <input type="text" name="title" id="title">
+          </div>
+          <div class="note-edit">
+            <label for="description" class="note-25">Description</label>
+            <textarea name="description" id="description" class="note-50"></textarea>
+          </div>
+          <div class="note-edit">
+            <label for="importance" class="note-25">Importance</label>
+            <select name="importance" id="importance">
+              <option value="1">&#9733;</option>
+              <option value="2">&#9733;&#9733;</option>
+              <option value="3">&#9733;&#9733;&#9733;</option>
+              <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
+              <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+            </select>
+          </div>
+          <div class="note-edit">
+            <label for="dueDate" class="note-25">Due Date</label>
+            <input type="date" name="dueDate" id="due-date">
+          </div>
+          <div class="note-edit">
+            <button id="save-note">Save</button>
+          </div>
         </div>
       </form>
     </div>

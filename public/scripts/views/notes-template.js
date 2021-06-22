@@ -3,9 +3,18 @@ import Note from '../services/note.js';
 export default class NotesTemplate {
   static list(notes) {
     return notes.reduce((template, note) => `${template}<div class="notes">
-    <div>${note.dueDateDisplay()} ${note.title} (${note._id}) ${note.importanceDisplay()}</div>
-    <div><input type="checkbox" id="${note._id}" ${note.finishDateChecked()}>Finished ${note.finishDateDisplay()} ${note.description}</div>
-    <div><button id="${note._id}">Edit</button></div>
+    <div class="note-row">
+      <div class="note-25">${note.dueDateDisplay()}</div>
+      <div class="note-75">
+        <div>${note.title}</div>
+        <div>${note.importanceDisplay()}</div>
+      </div>
+    </div>
+    <div class="note-row">
+      <div class="note-25"><input type="checkbox" id="${note._id}" ${note.finishDateChecked()}>Finished ${note.finishDateDisplay()}</div>
+      <div class="note-65">${note.description}</div>
+      <div class="note-10"><button id="${note._id}">Edit</button></div>
+    </div>
   </div>`, '');
   }
 

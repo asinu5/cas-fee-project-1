@@ -27,8 +27,17 @@ export class NotesStore {
     return this.db.findOne({ _id: id });
   }
 
-  async all(sortOrder = { title: -1 }) {
-    return this.db.cfind({}).sort(sortOrder).exec();
+  async all(filter = '', sortBy = '', order = 1) {
+    let sortCriteria;
+    console.log(`Kuckuck: ${sortBy}`);
+    if (sortBy.length > 0) {
+      // sortCriteria = { dueDate: 1 };
+      sortCriteria = { [sortBy]: order, title: 1 };
+    }
+    // sortCriteria = { importance: 1 };
+    const finishedFilter = (filter === 'finished') ? { finishDate: { $gt: '' } } : {};
+
+    return this.db.cfind(finishedFilter).sort(sortCriteria).exec();
   }
 }
 
