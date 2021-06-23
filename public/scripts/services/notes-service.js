@@ -36,9 +36,7 @@ class NotesService {
   }
 
   async saveItem(note) {
-    console.log(`idid: ${note._id}`);
     const id = note._id;
-    console.log(`ID-Checker: ${id}`);
     delete note._id;
     delete note.createDate;
     console.log(JSON.stringify(note));

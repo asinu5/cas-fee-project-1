@@ -34,10 +34,7 @@ class IndexController {
   }
 
   showEditForm() {
-    // this.editContainer.innerHTML = NotesTemplate.item();
-    this.navContainer.style.display = 'none';
-    this.notesContainer.style.display = 'none';
-    this.editContainer.style.display = 'block';
+    this.setView('edit');
 
     this._id.value = '';
     this.title.value = '';
@@ -88,53 +85,47 @@ class IndexController {
         this.description.value = note.description;
         this.importance.value = note.importance;
         this.dueDate.value = note.dueDate;
-        this.navContainer.style.display = 'none';
-        this.notesContainer.style.display = 'none';
-        this.editContainer.style.display = 'block';
+
+        this.setView('edit');
       } else if (event.target.type === 'checkbox') {
-        console.log('inside checkbox');
-        console.log(`CHECKED: ${event.target.checked}`);
-        console.log('finishDate');
         await notesService.changeFinishDate(noteId, event.target.checked);
 
-        // this.navContainer.style.display = 'initial';
         this.showNotes();
       }
-      // this.title.value = note.title;
-      // this.title.value = note.title;
-      // document.getElementById('save-note').addEventListener('click', (event) => {
-      //   event.preventDefault();
-      //   console.log(document.getElementById('edit-form'));
-      // });
-
-      // alert(event.target.id);
     });
 
     this.saveNote.addEventListener('click', async (event) => {
       event.preventDefault();
-      this.navContainer.style.display = 'block';
-      this.notesContainer.style.display = 'block';
-      this.editContainer.style.display = 'none';
+      this.setView('list');
 
-      // console.log('_id: ' + this._id.value);
-      // console.log('title: ' + this.title.value);
-      // console.log('description: ' + this.description.value);
-      // console.log('dueDate: ' + this.dueDate.value);
-      // console.log('importance: ' + this.importance.value);
       const note = new Note(this._id.value || 0, this.title.value, this.description.value, this.dueDate.value, null, this.importance.value);
-      console.log('SAVE Note');
-      console.log(note);
+
       await notesService.saveItem(note);
 
       this.showNotes();
     });
   }
 
+  setView(view = 'list') {
+    let listRelatedComponents;
+    let editRelatedComponents;
+
+    if (view === 'list') {
+      listRelatedComponents = 'block';
+      editRelatedComponents = 'none';
+    } else {
+      listRelatedComponents = 'none';
+      editRelatedComponents = 'block';
+    }
+    this.navContainer.style.display = listRelatedComponents;
+    this.notesContainer.style.display = listRelatedComponents;
+    this.editContainer.style.display = editRelatedComponents;
+  }
+
   initialize() {
     this.initEventHandlers();
     this.changeStyle.value = 'color';
-    this.editContainer.style.display = 'none';
-    // notesService.loadData();
+    this.setView('list');
     this.showNotes();
   }
 }
