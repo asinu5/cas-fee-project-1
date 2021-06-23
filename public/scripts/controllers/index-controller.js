@@ -26,13 +26,18 @@ class IndexController {
   }
 
   async showNotes(filter, sort = 'dueDate', order = -1) {
+    console.log('--STEP 1');
     const notes = await notesService.getAll(filter, sort, order);
+    console.log('--STEP 2');
     this.notesContainer.innerHTML = NotesTemplate.list(notes);
+    console.log('--STEP 3');
   }
 
   showEditForm() {
     // this.editContainer.innerHTML = NotesTemplate.item();
-    // this.navContainer.style.display = 'none';
+    this.navContainer.style.display = 'none';
+    this.notesContainer.style.display = 'none';
+    this.editContainer.style.display = 'block';
 
     this._id.value = '';
     this.title.value = '';
@@ -83,6 +88,9 @@ class IndexController {
         this.description.value = note.description;
         this.importance.value = note.importance;
         this.dueDate.value = note.dueDate;
+        this.navContainer.style.display = 'none';
+        this.notesContainer.style.display = 'none';
+        this.editContainer.style.display = 'block';
       } else if (event.target.type === 'checkbox') {
         console.log('inside checkbox');
         console.log(`CHECKED: ${event.target.checked}`);
@@ -104,6 +112,10 @@ class IndexController {
 
     this.saveNote.addEventListener('click', async (event) => {
       event.preventDefault();
+      this.navContainer.style.display = 'block';
+      this.notesContainer.style.display = 'block';
+      this.editContainer.style.display = 'none';
+
       // console.log('_id: ' + this._id.value);
       // console.log('title: ' + this.title.value);
       // console.log('description: ' + this.description.value);
@@ -113,12 +125,15 @@ class IndexController {
       console.log('SAVE Note');
       console.log(note);
       await notesService.saveItem(note);
+
+      this.showNotes();
     });
   }
 
   initialize() {
     this.initEventHandlers();
     this.changeStyle.value = 'color';
+    this.editContainer.style.display = 'none';
     // notesService.loadData();
     this.showNotes();
   }
