@@ -49,9 +49,11 @@ class IndexController {
 
     this.changeStyle.addEventListener('change', (event) => {
       if (event.target.value === 'color') {
-        this.styling.classList.remove('black-and-white');
+        this.colorCSS.disabled = false;
+        this.blackAndWhiteCSS.disabled = true;
       } else {
-        this.styling.classList.add('black-and-white');
+        this.colorCSS.disabled = true;
+        this.blackAndWhiteCSS.disabled = false;
       }
     });
 
@@ -126,7 +128,19 @@ class IndexController {
     this.editContainer.style.display = editRelatedComponents;
   }
 
+  getStyleSheets() {
+    for (let i = 0; i < document.styleSheets.length; i++) {
+      const styleSheet = document.styleSheets[i];
+      if (styleSheet.title === 'color') {
+        this.colorCSS = styleSheet;
+      } else if (styleSheet.title === 'black-and-white') {
+        this.blackAndWhiteCSS = styleSheet;
+      }
+    }
+  }
+
   initialize() {
+    this.getStyleSheets();
     this.initEventHandlers();
     this.changeStyle.value = 'color';
     this.setView('list');

@@ -1,5 +1,5 @@
 {"title":"Nashorn","description":"","dueDate":"2021-06-30","finishDate":"2021-06-26","importance":"4","creationDate":"2021-06-26","_id":"2oha9MD56VqfOyj9"}
 {"title":"Affe","description":"","dueDate":"9999-01-01","finishDate":"2021-06-26","importance":"4","creationDate":"2021-06-26","_id":"YIld3N5rUbo2ToaO"}
-{"title":"Forelle","description":"","dueDate":"2021-07-01","importance":"3","finishDate":"2021-06-26","creationDate":"2021-06-01","_id":"hhi7QMT6wgP3zzX6"}
-{"title":"Huhn","description":"Alle Hühner sind da.","dueDate":"2021-09-15","finishDate":"2021-06-26","importance":"1","creationDate":"2021-06-26","_id":"jAtupXqQaWLXVWpO"}
+{"title":"Forelle","description":"","dueDate":"2021-07-01","importance":"3","finishDate":"9999-01-01","creationDate":"2021-06-01","_id":"hhi7QMT6wgP3zzX6"}
+{"title":"Huhn","description":"Alle Hühner sind da.","dueDate":"2021-09-15","finishDate":"9999-01-01","importance":"1","creationDate":"2021-06-26","_id":"jAtupXqQaWLXVWpO"}
 {"title":"Giraffe","description":"","dueDate":"2021-06-28","finishDate":"2021-06-26","importance":"5","creationDate":"2021-06-26","_id":"pvrrdTRWdk22hyrL"}

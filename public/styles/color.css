@@ -1,0 +1,20 @@
+.notes:nth-child(even) {
+  background-color: rgb(217, 243, 217);
+}
+
+.notes:nth-child(odd) {
+  background-color: rgb(238, 255, 234);
+}
+
+button {
+  background-color: darkgreen;
+  color: white;
+}
+
+button:hover {
+  background-color: green;
+}
+
+select {
+  margin: 2px;
+}
