@@ -64,7 +64,7 @@ class NotesService {
   }
 
   async changeFinishDate(id, checked) {
-    const note = { finishDate: checked ? DateTime.now().toISODate() : '' };
+    const note = { finishDate: checked };
     return await fetch(`/notes/${id}`, {
       method: 'PATCH',
       headers: {

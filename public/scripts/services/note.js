@@ -2,32 +2,13 @@ import { DateTime } from './luxon.js';
 
 export default class Note {
   constructor(_id, title, description, dueDate, finishDate, importance) {
-    this._id = _id || 0;
-    this.title = title || '';
-    this.description = description || '';
-    this.dueDate = dueDate || '';
-    this.finishDate = finishDate || '';
-    this.importance = importance || '1';
-    // this.actualDate = DateTime.now().setZone("Europe/Zurich");
-  }
-
-  // toJSON() {
-  //   return {
-  //     _id: this._id,
-  //     title: this.title,
-  //     description: this.description,
-  //     dueDate: this.dueDate,
-  //     finishDate: this.finishDate,
-  //     importance: this.importance,
-  //   };
-  // }
-
-  static toHumanReadableDate(date) {
-    return new Date(date).toDateString();
-  }
-
-  creationDateToHuman() {
-    return new Date(this.creationDate).toDateString();
+    const maxDate = '9999-01-01';
+    this._id = _id;
+    this.title = title;
+    this.description = description;
+    this.dueDate = (dueDate === maxDate) ? '' : dueDate;
+    this.finishDate = (finishDate === maxDate) ? '' : finishDate;
+    this.importance = importance;
   }
 
   dueDateDisplay() {
@@ -65,7 +46,7 @@ export default class Note {
     let finishDate;
     if (this.finishDate === '') {
       finishDate = '';
-    } else if (DateTime.fromISO(this.dueDate).isValid === true) {
+    } else if (DateTime.fromISO(this.finishDate).isValid === true) {
       const daysDiff = Math.abs(Math.ceil(DateTime.fromISO(this.finishDate).diffNow('days').days));
       switch (daysDiff) {
         case 0:
@@ -80,7 +61,6 @@ export default class Note {
     } else {
       finishDate = 'date is not valid';
     }
-
     return finishDate;
   }
 

@@ -1,82 +1,126 @@
 body {
-    max-width: 800px;
-    font-size: 14px;
-    font-family: sans-serif;
+  max-width: 800px;
+  font-size: 14px;
+  font-family: sans-serif;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nav-row,
 .note-row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.align-right {
+  float: right;
+  margin: 0;
+}
+
+/* .nav-row > button,
+.nav-row > select {
+  flex: 1 1 0%;
+} */
+
+.row-item-1 {
+  flex: 1 1 0;
+}
+
+.row-item-3 {
+  flex: 3 1 0;
+}
+
+.row-item-spacer {
+  flex: 1 1 0;
+}
+
+.row-item-double-spacer {
+  flex: 2 1 0;
+  padding-left: 10px;
 }
 
 .notes {
-    padding: 5px 0;
+  padding: 5px 0;
 }
 
 .notes:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: rgb(214, 238, 214);
+}
+
+.notes:nth-child(odd) {
+  background-color: rgb(238, 238, 238);
 }
 
 .note-25 {
-    width: 25%;
+  flex: 1 1 0%;
 }
 
 .note-50 {
-    width: 50%;
+  flex: 2 1 0%;
 }
 
 .note-75 {
-    width: 75%;
-    display: flex;
-    justify-content: space-between;
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .note-65 {
-    width: 70%;
+  width: 70%;
 }
 
 .note-10 {
-    width: 5%;
-}
-
-.nav-row>button,
-.nav-row>select {
-    flex: 1 1 auto;
+  width: 5%;
 }
 
 button {
-    background-color: darkgreen;
-    border: none;
-    padding: 7px;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 2px 1px;
-    cursor: pointer;
-    border-radius: 2px;
-    transition-duration: 0.2s;
+  background-color: darkgreen;
+  border: none;
+  padding: 7px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  margin: 2px 1px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition-duration: 0.2s;
+  white-space: nowrap;
+}
+
+#create-note {
+  padding-right: 0px;
 }
 
 .black-and-white {
-    color: white;
-    background-color: grey;
+  color: white;
+  background-color: grey;
 }
 
 button:hover {
-    background-color: green;
+  background-color: green;
 }
 
 select {
-    margin: 2px;
+  margin: 2px;
 }
 
 .note-edit {
-    display: flex;
-    justify-content:left;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
 }
 
+.flex-3 {
+  flex: 1 1 75%;
+}
 
+.flex-1 {
+  flex: 1 1 25%;
+}
+
+.row-item-description {
+  flex: 4 1 0;
+  /* margin-rigth: auto; */
+}

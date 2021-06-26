@@ -5,66 +5,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Note App</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
-    integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
   <script src="./scripts/controllers/index-controller.js" type="module"></script>
-
   <link rel="stylesheet" href="styles/index.css">
 </head>
 
 <body id="styling">
   <header>
+    <h1>Notes App</h1>
     <nav>
       <div id="nav-container">
         <div class="nav-row">
-          <button id="create-note">Create New Note</button>
-          <select id="change-style">
+          <button id="create-note" class="row-item-1">Create New Note</button>
+          <div class="row-item-double-spacer">&nbsp;</div>
+          <select id="change-style" class="row-item-1">
             <option value="color">Color</option>
             <option value="black-and-white">Black and White</option>
           </select>
         </div>
         <div class="nav-row">
-          <button id="sort-by-finish-date">Sort by Finish Date</button>
-          <button id="sort-by-creation-date">Sort by Creation Date</button>
-          <button id="sort-by-importance">Sort by Importance</button>
-          <button id="show-finished-tasks">Show Finished Notes</button>
+          <button id="sort-by-due-date" class="row-item-1">Sort by Due Date</button>
+          <button id="sort-by-creation-date" class="row-item-1">Sort by Creation Date</button>
+          <button id="sort-by-importance" class="row-item-1">Sort by Importance</button>
+          <button id="show-finished-tasks" class="row-item-1">Show Finished Notes</button>
         </div>
       </div>
     </nav>
   </header>
 
   <main>
-    <div id="notes-container">
-
-    </div>
+    <div id="notes-container"> </div>
     <div id="edit-container">
       <form id="edit-form">
         <input type="hidden" name="_id" id="_id">
         <div>
           <div class="note-edit">
-            <label for="title" class="note-25">Title</label>
-            <input type="text" name="title" id="title">
+            <label for="title" class="row-item-1">Title</label>
+            <input type="text" name="title" id="title" class="row-item-3">
           </div>
           <div class="note-edit">
-            <label for="description" class="note-25">Description</label>
-            <textarea name="description" id="description" class="note-50"></textarea>
+            <label for="description" class="row-item-1">Description</label>
+            <textarea name="description" id="description" class="row-item-3"></textarea>
           </div>
           <div class="note-edit">
-            <label for="importance" class="note-25">Importance</label>
-            <select name="importance" id="importance">
+            <label for="importance" class="row-item-1">Importance</label>
+            <select name="importance" id="importance" class="row-item-1">
               <option value="1">&#9733;</option>
               <option value="2">&#9733;&#9733;</option>
               <option value="3">&#9733;&#9733;&#9733;</option>
               <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
               <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
             </select>
+            <div class="row-item-double-spacer"></div>
           </div>
           <div class="note-edit">
-            <label for="dueDate" class="note-25">Due Date</label>
-            <input type="date" name="dueDate" id="due-date">
+            <label for="dueDate" class="row-item-1">Due Date</label>
+            <input type="date" name="dueDate" id="due-date" class="row-item-1">
+            <div class="row-item-double-spacer"></div>
           </div>
           <div class="note-edit">
-            <button id="save-note">Save</button>
+            <button id="save-note" class="button-save row-item-3">Save</button>
+            <button id="cancel-note" class="button-cancel row-item-1">Cancel</button>
           </div>
         </div>
       </form>

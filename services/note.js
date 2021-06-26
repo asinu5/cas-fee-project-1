@@ -5,7 +5,7 @@ export default class Note {
     this._id = _id || '';
     this.title = title || '';
     this.description = description || '';
-    this.creationDate =  DateTime.now().toISODate();
+    this.creationDate = DateTime.now().toISODate();
     this.dueDate = dueDate || '';
     this.finishDate = finishDate || '';
     this.importance = importance || '1';
@@ -22,8 +22,4 @@ export default class Note {
   //     importance: this.importance,
   //   };
   // }
-
-  static toHumanReadableDate(date) {
-    return new Date(date).toDateString();
-  }
 }

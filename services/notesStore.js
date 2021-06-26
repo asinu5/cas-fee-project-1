@@ -7,12 +7,27 @@ export class NotesStore {
   }
 
   async create(note) {
+    note.dueDate = (note.dueDate === '') ? '9999-01-01' : note.dueDate;
+    note.finishDate = '9999-01-01';
     note.creationDate = DateTime.now().toISODate();
+    note.importance = (note.importance === '') ? '1' : note.importance;
+    console.log('NOTE');
     console.log(note);
     return this.db.insert(note);
   }
 
   async save(id, note) {
+    console.log('HOMIE --');
+    console.log(note);
+    if ('dueDate' in note) {
+      note.dueDate = (note.dueDate === '') ? '9999-01-01' : note.dueDate;
+    }
+    if ('finishDate' in note) {
+      note.finishDate = (note.finishDate === true) ? DateTime.now().toISODate() : '9999-01-01';
+      console.log(note.finishDate);
+    }
+    console.log('-- HOMIE');
+
     return this.db.update({ _id: id }, { $set: note });
   }
 
@@ -25,7 +40,7 @@ export class NotesStore {
     if (sortBy.length > 0) {
       sortCriteria = { [sortBy]: order, title: 1 };
     }
-    const finishedFilter = (filter === 'finished') ? { finishDate: { $gt: '' } } : {};
+    const finishedFilter = (filter === 'finished') ? { finishDate: { $lt: '9999-01-01' } } : {};
 
     return this.db.cfind(finishedFilter).sort(sortCriteria).exec();
   }

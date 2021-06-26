@@ -6,7 +6,7 @@ class IndexController {
   constructor() {
     this.createNote = document.getElementById('create-note');
     this.changeStyle = document.getElementById('change-style');
-    this.sortByFinishDate = document.getElementById('sort-by-finish-date');
+    this.sortByDueDate = document.getElementById('sort-by-due-date');
     this.sortByCreationDate = document.getElementById('sort-by-creation-date');
     this.sortByImportance = document.getElementById('sort-by-importance');
     this.showFinishedTasks = document.getElementById('show-finished-tasks');
@@ -19,18 +19,17 @@ class IndexController {
     this.importance = document.getElementById('importance');
     this.dueDate = document.getElementById('due-date');
     this.saveNote = document.getElementById('save-note');
+    this.cancelNote = document.getElementById('cancel-note');
     this.styling = document.getElementById('styling');
     this.importanceOrder = -1;
+    this.dueDateOrder = -1;
     this.finishDateOrder = -1;
     this.creationDateOrder = -1;
   }
 
   async showNotes(filter, sort = 'dueDate', order = -1) {
-    console.log('--STEP 1');
     const notes = await notesService.getAll(filter, sort, order);
-    console.log('--STEP 2');
     this.notesContainer.innerHTML = NotesTemplate.list(notes);
-    console.log('--STEP 3');
   }
 
   showEditForm() {
@@ -56,9 +55,9 @@ class IndexController {
       }
     });
 
-    this.sortByFinishDate.addEventListener('click', (event) => {
-      this.showNotes('', 'finishDate', this.finishDateOrder);
-      this.finishDateOrder *= -1;
+    this.sortByDueDate.addEventListener('click', (event) => {
+      this.showNotes('', 'dueDate', this.dueDateOrder);
+      this.dueDateOrder *= -1;
     });
 
     this.sortByImportance.addEventListener('click', (event) => {
@@ -99,10 +98,15 @@ class IndexController {
       this.setView('list');
 
       const note = new Note(this._id.value || 0, this.title.value, this.description.value, this.dueDate.value, null, this.importance.value);
-
+      delete note.finishDate;
       await notesService.saveItem(note);
 
       this.showNotes();
+    });
+
+    this.cancelNote.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.setView('list');
     });
   }
 
