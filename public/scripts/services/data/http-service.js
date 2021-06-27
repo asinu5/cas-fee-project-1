@@ -1,13 +1,15 @@
 class HttpService {
-  ajax(method, url, data = '', headers) {
-    const fetchHeaders = new Headers({ 'content-type': 'application/json', ...(headers || {}) });
-    console.log(method);
-    return fetch(url, {
+  static async ajax(method, url, data = '') {
+    const init = {
       method,
-      headers: fetchHeaders,
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify(data),
-    }).then((x) => x.json());
+    };
+    if (method === 'GET' || method === 'HEAD') {
+      delete init.body;
+    }
+    return fetch(url, init).then((x) => x.json());
   }
 }
 
-export default new HttpService();
+export default HttpService;

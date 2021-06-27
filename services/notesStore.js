@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import Datastore from 'nedb-promise';
 import { DateTime } from 'luxon';
 
@@ -11,22 +12,17 @@ export class NotesStore {
     note.finishDate = '9999-01-01';
     note.creationDate = DateTime.now().toISODate();
     note.importance = (note.importance === '') ? '1' : note.importance;
-    console.log('NOTE');
-    console.log(note);
+
     return this.db.insert(note);
   }
 
   async save(id, note) {
-    console.log('HOMIE --');
-    console.log(note);
     if ('dueDate' in note) {
       note.dueDate = (note.dueDate === '') ? '9999-01-01' : note.dueDate;
     }
     if ('finishDate' in note) {
       note.finishDate = (note.finishDate === true) ? DateTime.now().toISODate() : '9999-01-01';
-      console.log(note.finishDate);
     }
-    console.log('-- HOMIE');
 
     return this.db.update({ _id: id }, { $set: note });
   }

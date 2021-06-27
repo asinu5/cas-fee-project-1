@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable import/extensions */
 import { DateTime } from './luxon.js';
 
 export default class Note {
