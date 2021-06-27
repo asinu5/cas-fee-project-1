@@ -8,7 +8,7 @@ class HttpService {
     if (method === 'GET' || method === 'HEAD') {
       delete init.body;
     }
-    return fetch(url, init).then((x) => x.json());
+    return fetch(url, init).then((res) => res.json());
   }
 }
 

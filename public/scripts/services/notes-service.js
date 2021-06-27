@@ -7,8 +7,8 @@ import httpService from './data/http-service.js';
 
 class NotesService {
   static async getAll(filter = '', sortBy = '', order = '1') {
-    let notes = await httpService.ajax('GET', `/notes?filter=${filter}&sort=${sortBy}&order=${order}`);
-    notes = notes.map((x) => new Note(x._id, x.title, x.description, x.dueDate, x.finishDate, x.importance));
+    const data = await httpService.ajax('GET', `/notes?filter=${filter}&sort=${sortBy}&order=${order}`);
+    const notes = data.map((item) => new Note(item._id, item.title, item.description, item.dueDate, item.finishDate, item.importance));
     return notes;
   }
 

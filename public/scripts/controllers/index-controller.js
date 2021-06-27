@@ -31,10 +31,11 @@ class IndexController {
 
     // Filter and sorting states
     this.importanceOrder = -1;
-    this.dueDateOrder = -1;
+    this.dueDateOrder = 1;
     this.finishDateOrder = -1;
     this.creationDateOrder = -1;
 
+    // Styling section
     this.additionalStyles = document.getElementById('additional-styles');
   }
 
